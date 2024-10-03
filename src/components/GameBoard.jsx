@@ -1,4 +1,4 @@
-const plrBrd=[['x',null,null],[null,null,null],[null,null,'o']];
+const plrBrd=[[null,null,null],[null,null,null],[null,null,null]];
 export function GameBoard(){
     return <ol id="game-board">
         {
