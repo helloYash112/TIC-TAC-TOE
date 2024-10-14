@@ -1,25 +1,13 @@
 
 const plrBrd=[[null,null,null],[null,null,null],[null,null,null]];
 export function GameBoard({showActivePlr,turn}){
-const preArr=plrBrd;
- for(const turn of turn){
-    const{squre,symbol}=turn;
+let preArr=plrBrd;
+ for(const data of turn){
+    const{squre,symbol}=data;
     const{row,col}=squre;
     preArr[row][col]=symbol;
  }
-
-  /*
-      const[preArr,udtArr]=useState(plrBrd);
-      function plrSelectedBox(rowIndex,colIndex){
-        udtArr(preArrays=>{
-            const newArr=[...preArrays.map(innerArr=>[...innerArr])];
-            newArr[rowIndex][colIndex]=plrSybl;
-            return newArr;
-        })
-            
-        showActivePlr();*/
-       
-      
+  
     return <ol id="game-board">
         {
             preArr.map((row,rowIdx)=><li key={rowIdx}>
