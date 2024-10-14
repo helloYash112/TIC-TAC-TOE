@@ -1,6 +1,14 @@
-import { useState } from "react";
+
 const plrBrd=[[null,null,null],[null,null,null],[null,null,null]];
-export function GameBoard({showActivePlr,plrSybl}){
+export function GameBoard({showActivePlr,turn}){
+const preArr=plrBrd;
+ for(const turn of turn){
+    const{squre,symbol}=turn;
+    const{row,col}=squre;
+    preArr[row][col]=symbol;
+ }
+
+  /*
       const[preArr,udtArr]=useState(plrBrd);
       function plrSelectedBox(rowIndex,colIndex){
         udtArr(preArrays=>{
@@ -8,14 +16,16 @@ export function GameBoard({showActivePlr,plrSybl}){
             newArr[rowIndex][colIndex]=plrSybl;
             return newArr;
         })
-        showActivePlr();
-      }
+            
+        showActivePlr();*/
+       
+      
     return <ol id="game-board">
         {
             preArr.map((row,rowIdx)=><li key={rowIdx}>
              <ol>
               {
-                row.map((plrSbl,colIdx)=><li key={colIdx}><button onClick={()=>plrSelectedBox(rowIdx,colIdx)}>{plrSbl}</button></li>)
+                row.map((plrSbl,colIdx)=><li key={colIdx}><button onClick={()=>showActivePlr(rowIdx,colIdx)}>{plrSbl}</button></li>)
               }
              </ol>
             </li>
