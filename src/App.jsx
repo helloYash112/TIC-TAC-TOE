@@ -10,7 +10,13 @@ const plrBrd=[[null,null,null],[null,null,null],[null,null,null]];
 function App() {
   
   const[preArr,udtArr]=useState([]);
+  const plrSmbl={
+   'X' :'player 1',
+   'O' :'player 2'
+  }
+  const[currPlr,setPlr]=useState(plrSmbl);
   let winning;
+  
   let intialGameBoard= [...plrBrd.map(innerArr=> [...innerArr])];
   
   for(const data of preArr){
@@ -26,7 +32,7 @@ function App() {
    
    
    if(fps && fps===sps && fps===tps){
-      winning=fps;
+      winning=currPlr[fps];
    }
   }
  const draw=(preArr.length== 9 && !winning);
@@ -53,11 +59,20 @@ function App() {
       udtArr([]);
      }
 
+function setPlayerName(symbol,name){
+   setPlr(oldPlr=>{
+      return {
+         ...oldPlr,
+         [symbol] :name
+      }
+   })
+}
+
   return (<main>
    <div id="game-container">
     <ol id="players">
-       <Player name='player 1' symbol='X' isValid={activePlr=='X'}/> 
-       <Player name='player 2' symbol='O' isValid={activePlr=='O'} />    
+       <Player name={currPlr['X']} symbol='X' isValid={activePlr=='X'} onUdtName={setPlayerName}/> 
+       <Player name={currPlr['O']} symbol='O' isValid={activePlr=='O'} onUdtName={setPlayerName}/>    
     </ol>
     {(winning || draw) && <Result winner={winning} match={rematch} />}
     <GameBoard showActivePlr={handleActivePlayer} bord={intialGameBoard}/>

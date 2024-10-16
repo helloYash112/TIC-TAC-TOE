@@ -1,12 +1,13 @@
 import { useState } from "react"
-export function Player({name,symbol,isValid}){
+export function Player({name,symbol,isValid,onUdtName}){
     const [edited,isEdited]=useState(false);
     const[nameChange,udtName]=useState(name);
     function changeEditing(){
         isEdited((editing)=>!editing);
+        onUdtName(symbol,nameChange);
     }
     function handleName(event){
-        console.log(event);
+        
         udtName(event.target.value);
     }
     let nameEdited=<span className='player-name'>{nameChange}</span>;
