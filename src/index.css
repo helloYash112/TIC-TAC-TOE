@@ -46,6 +46,9 @@ h1 {
   margin: 0 auto 3rem auto;
   color: #3f3b00;
 }
+.active{
+  background-color: blueviolet;
+}
 
 #game-container {
   max-width: 45rem;

@@ -1,11 +1,14 @@
-const plrBrd=[['x',null,null],[null,null,null],[null,null,'o']];
-export function GameBoard(){
+
+
+export function GameBoard({showActivePlr,bord}){
+
+  
     return <ol id="game-board">
         {
-            plrBrd.map((row,rowIdx)=><li key={rowIdx}>
+            bord.map((row,rowIdx)=><li key={rowIdx}>
              <ol>
               {
-                row.map((plrSbl,colIdx)=><li key={colIdx}><button>{plrSbl}</button></li>)
+                row.map((plrSbl,colIdx)=><li key={colIdx}><button onClick={()=>showActivePlr(rowIdx,colIdx)} disabled={plrSbl !=null}>{plrSbl}</button></li>)
               }
              </ol>
             </li>
